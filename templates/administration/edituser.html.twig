@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Modifier l'utilisateur
+{% endblock %}
+{% block body %}
+	<h1>Modifier l'utilisateur</h1>
+
+	{{form_start(userForm)}}
+	<div class="form-group col-lg-6">
+		{{form_row(userForm.username,{'label':'Nom d\'utilisateur','attr':{'placeholder':'Nom d\'utilisateur...','class': 'form-control'}})}}
+	</div>
+	<div class="form-group col-lg-6">
+		{{form_row(userForm.email, {'label':'Adresse email','attr':{'placeholder' : 'Adresse email...','class': 'form-control'}})}}
+	</div>
+	<div class="form-group col-lg-6">
+		{% for i in 0..4 %}
+			<div>
+				<div>&emsp;{{form_widget(userForm.roles[i])}}&emsp;{{form_label(userForm.roles[i]) }}</div>
+			</div>
+		{% endfor %}
+	
+	</div>
+	<div class="form-group col-lg-6">
+		<button type="submit" class="btn btn-success">Modifier</button>
+	</div>
+	{{form_end(userForm)}}
+
+{% endblock %}

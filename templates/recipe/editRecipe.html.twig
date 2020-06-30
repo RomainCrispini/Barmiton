@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+	<form action="" method="post" class="form-example"><br>
+		<h3>Recette</h3>
+		<div class="form-example">
+			<label id="idUser" hidden>{{idUser}}</label>
+			<label for="recipeName">Entrer le nom de la recette :
+			</label>
+			<input type="text" name="recipeName" required>
+		</div>
+
+		<div class="form-example">
+			<label for="personNum">Pour combien de personne :
+			</label>
+			<input type="number" name="personNum" required>
+		</div>
+
+		<label for="category">Choisisser une catégori :</label>
+		<select name="categories" id="category_list">
+			<option value="">--Choisissez une catégorie--</option>
+			{% for category in categories %}
+				<option value="{{ category.categoryName }}">{{category.categoryName}}</option>
+			{% endfor %}
+
+		</select>
+		<div>
+			<br>
+			<h3>Ingrédients</h3>
+			<div id="main_ingredient"></div>
+			<button type="button" class="btn btn-primary" id="addIngredient">
+				Ajouter ingredient
+			</button>
+		</div>
+		<br>
+		<h3>Étapes</h3>
+		<div id="main_step">
+		
+		
+		
+		</div>
+		<button type="button" class="btn btn-primary" id="addStep">
+				Ajouter étape
+			</button>
+		<br>
+		<br>
+		<div class="form-example">
+			<button type="button" id="btnValider" class="btn btn-primary">Valider</button>
+		</div>
+
+	</form>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+	<script type="text/javascript" src="\code.js"></script>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddRecipeController!
+{% endblock %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+
+
+	{# {{ form_start(form)}}
+
+	{{ form_row(form.recipeName, {'label':'Nom de la recettes :','attr': {'placeholder': 'Gateau a la fraise'}})}}
+	{{ form_row(form.personNum, {'label':'Pour combien de personne ? :','attr': {'placeholder': '4'}})}}
+	{{ form_row(form.recipeIsValid, {'label':'Validé admin :','attr': {'placeholder': '06 56 8..'}, })}}
+	{{ form_row(form.recipeCreatedAt, {'label':'E-mail :','attr': {'placeholder': 'monsieur@mail.com'}})}}
+	{{ form_row(form.recipeRate, {'label':'Note :'})}}
+
+	{{ form_end(form)}} #}
+
+	{{ form( form )}}
+
+
+
+{% endblock %}

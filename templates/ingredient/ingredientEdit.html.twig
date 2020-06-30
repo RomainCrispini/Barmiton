@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+
+
+{{ form(form) }}
+<a href="{{ path( 'picture', { 'id' : recipe.id }) }}" class="btn btn-danger">Ou passer a la photo</a>
+
+{% for quantity in quantities %}
+
+    {{ quantity.quantity }}    {{ quantity.unit.unit }}    {{ quantity.ingredient.ingredientName }}
+    <br>
+
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+
+	{{ form_start( form )}}
+
+    {{ form_row(form.stepNum, {'attr': {'value': numEtape }})}}
+
+    <br>
+    {{ form_row(form.stepText, {'label':'Description de l\'étape numéro ' ~ numEtape,'attr': {'placeholder': 'Description'}})}}
+    
+
+    <button type="submit" class="btn btn-primary">Valider et Ajouter une étape</button>
+    <a href="{{ path( 'ingredientAdd', { 'id' : recipe.id }) }}" class="btn btn-danger">Ou passer aux ingredients</a>
+    {{ form_end( form )}}
+
+    {% for step in steps %}
+
+        <br> {{ step.stepText }} <br>
+
+    {% endfor %}
+
+{% endblock %}

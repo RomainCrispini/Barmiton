@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	Liste des utilisateurs
+{% endblock %}
+{% block body %}
+	<h1>Liste des utilisateurs</h1>
+	<table class="table">
+		<thead>
+			<th>ID</th>
+			<th>Username</th>
+			<th>Email</th>
+			<th>Rôle</th>
+			<th>Validation</th>
+			<th>Actions</th>
+		</thead>
+		<tbody>
+			{# On boucle sur les utilisateurs#}
+			{% for user in users %}
+				{% set role_name = "" %}
+				<tr>
+					<td>{{user.id}}</td>
+					<td>{{user.username}}</td>
+					<td>{{user.email}}</td>
+					<td>
+						{% for role in user.roles %}
+							{% if role == "ROLE_SUPER_ADMIN"  %}
+								{% set role_name = "Super Administrator" %}
+							{% else %}
+								{% if role == "ROLE_ADMIN" and role_name != "Super Administrator" %}
+									{% set role_name = "Administrator" %}
+								{% else %}
+									{% if role == "ROLE_MODERATOR" and role_name != "Administrator" and role_name != "Super Administrator" %}
+										{% set role_name = "Moderator" %}
+									{% else %}
+										{% if role == "ROLE_REDACTOR" and role_name != "Moderator" and role_name != "Administrator" and role_name != "Super Administrator"%}
+											{% set role_name = "Redactor" %}
+										{% else %}
+											{% if role == "ROLE_USER" and role_name != "Redactor" and role_name != "Moderator" and role_name != "Administrator" and role_name != "Super Administrator"%}
+												{% set role_name = "User" %}
+											{% endif %}
+										{% endif %}
+									{% endif %}
+								{% endif %}
+							{% endif %}
+						{% endfor %}
+						{{role_name}}
+					</td>
+					<td>
+						{% if user.isActive == 0 %}
+							Compte Inactif
+						{% else %}
+							Compte Actif
+						{% endif %}
+					</td>
+					<td>
+						{% if user.email != app.user.email %}
+							{% if is_granted('ROLE_SUPER_ADMIN') %}
+								<a href="{{path('administration_edituser',{'id' :user.id})}}" class=" btn btn-warning">Modifier</a>
+							{% else %}
+								{% if is_granted('ROLE_ADMIN') and role_name != "Administrator" and role_name != "Super Administrator" %}
+									<a href="{{path('administration_edituser',{'id' :user.id})}}" class=" btn btn-warning">Modifier</a>
+								{% endif %}
+							{% endif %}
+						{% endif %}
+						</td>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">Il n'y a pas d'utilisateurs inscrits</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}inscription
+{% endblock %}
+
+{% block body %}
+	<h1>Inscription sur le site</h1>
+
+	{{form_start(form)}}
+	<div class="form-group col-lg-6">
+		{{form_widget(form.username,{'label':'Nom d\'utilisateur','attr':{'placeholder':'Nom d\'utilisateur...','class': 'form-control'}})}}
+		<div class="text-danger">
+			{{form_errors(form.username)}}
+		</div>
+	</div>
+	<div class="form-group col-lg-6">
+		{{form_widget(form.email, {'label':'Adresse email','attr':{'placeholder' : 'Adresse email...','class': 'form-control'}})}}
+		<div class="text-danger">
+			{{form_errors(form.email)}}
+		</div>
+	</div>
+	<div class="form-group col-lg-6">
+		{{form_widget(form.password,{'label':'Mot de Passe','attr':{'placeholder' : 'Mot de passe...','class': 'form-control'}})}}
+		<div class="text-danger">
+			{{form_errors(form.password)}}
+		</div>
+	</div>
+	<div class="form-group col-lg-6">
+		{{form_widget(form.confirm_password,{'label':'Confirmation du mot de passe','attr':{'placeholder' : 'Répéter votre mot de passe...','class': 'form-control'}})}}
+		<div class="text-danger">
+			{{form_errors(form.confirm_password)}}
+		</div>
+	</div>
+	<div class="form-group col-lg-6">
+		<button type="submit" class="btn btn-success">Inscription!</button>
+	</div>
+	{{form_end(form)}}
+
+
+	{# 
+							<form action="submit" method ="post">
+									<div class="form-group">
+										<input placeholder ="Nom d'utilisateur..." require name= {{form.username}} type="text" class="form-control">
+									</div>
+							        <div class="form-group">
+										<input placeholder ="Mot de passe..." require name= "_password" type="password" class="form-control">
+									</div>
+							        <div class="form-group">
+							            <button type="submit" class="btn btn-success">Connexion</button>
+							        </div>
+								</form> #}
+
+{% endblock %}

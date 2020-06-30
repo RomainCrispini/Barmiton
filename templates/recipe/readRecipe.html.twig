@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Barmiton
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<br>
+		{# <a href="{{ path( 'recipeDelete', { 'id' : recipe.id } ) }}" type="button" class="btn btn-danger">Supprimer</a> #}
+		{# <a href="{{ path( 'recipeEdit', { 'id' : recipe.id } ) }}" type="button" class="btn btn-primary">Editer</a> #}
+		<br>
+		<br>
+		<br>
+		<div "conteneur2">
+			<h2>{{ recipe.recipeName }}</h2>
+			<div class="conteneur">
+				<div class="col-lg-4">
+					<div>
+						Pour
+						{{ recipe.personNum }}
+						personne(s)<br>
+						Créé le
+						{{ recipe.recipeCreatedAt | date( 'd/m/y à H:i' ) }}
+						<br>
+						par
+						{{ recipe.user.userName }}<br>
+					</div>
+					<br>
+				</div>
+				<div class="col-lg-5">
+				{% for item in picture %}
+					<img src="/uploads/images/products/{{item.image}}"alt="" style="width: 80%; ">
+				{% endfor %}
+				</div>
+			</div>
+			<div>
+				<br>
+				<div class="bordure">
+					<h5>Ingrédient</h5>
+					<ul>
+						{% for item in listeIngredient %}
+							<li>{{item}}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+			<br>
+			<div class="bordure">
+				<h5>Étapes</h5>
+				<ul>
+				{% for item in listeEtapes %}
+					<li>{{item.stepText}}
+					</li>
+				{% endfor %}
+				</ul>
+			</div>
+
+		</div>
+		<div></div>
+	</div>
+	<br><br><br><br><br><br>
+{% endblock %}
